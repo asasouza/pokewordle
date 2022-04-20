@@ -77,7 +77,7 @@ describe("App", () => {
   });
 
   describe("Componente de letras", () => {
-    test.todo("Estado inicial do componente");
+    test("Estado inicial do componente", () => {});
 
     test.todo("Ao acertar todas as letras");
 
