@@ -15,9 +15,9 @@ const App = () => {
       <Guesser />
 
       <button
-        disabled={gameStatus === GAME_STATUS.IN_PROGRESS}
         className="w-full font-bold text-stone-600 rounded-md p-1 border-2 border-stone-600 my-10"
         onClick={initNewGame}
+        hidden={gameStatus === GAME_STATUS.IN_PROGRESS}
       >
         Play Again
       </button>

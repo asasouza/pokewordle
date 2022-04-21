@@ -6,7 +6,6 @@ const Attempts = () => {
   const pokemonName = pokemon?.name.toUpperCase().split("");
 
   function getBackground(letter, index) {
-    console.log(pokemonName, letter);
     if (letter === pokemonName[index]) {
       return "bg-green-400";
     }

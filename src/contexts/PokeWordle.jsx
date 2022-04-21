@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createContext,
   useCallback,
@@ -8,6 +9,10 @@ import {
 } from "react";
 
 const PokeWordle = createContext();
+
+function getRandomNuber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 
 export function usePokeWordle() {
   const context = useContext(PokeWordle);
@@ -30,19 +35,12 @@ export const GAME_STATUS = Object.freeze({
 export function PokeWordleProvider(props) {
   const [attempts, setAttempts] = useState([]);
   const [pokemon, setPokemon] = useState(null);
-  //   const [gameStatus, setGameStatus] = useState(GAME_STATUS.IN_PROGRESS);
 
-  function getPokemon() {
-    setPokemon({
-      name: "qwer",
-      id: 1,
-      sprites: {
-        other: {
-          "official-artwork":
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-        },
-      },
-    });
+  async function getPokemon() {
+    const response = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${getRandomNuber(1, 150)}`
+    );
+    setPokemon(response.data);
   }
 
   useEffect(() => {
