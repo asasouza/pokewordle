@@ -27,6 +27,7 @@ const Attempts = () => {
                 y
               )}`}
               key={y}
+              data-testid="attempt-letter"
             >
               {letter}
             </span>

@@ -24,7 +24,7 @@ export function usePokeWordle() {
   return context;
 }
 
-const MAX_ATTEMPTS = 5;
+export const MAX_ATTEMPTS = 5;
 
 export const GAME_STATUS = Object.freeze({
   IN_PROGRESS: "IN_PROGRESS",

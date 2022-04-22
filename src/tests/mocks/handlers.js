@@ -8,8 +8,10 @@ export const handlers = [
         id: 1,
         sprites: {
           other: {
-            "official-artwork":
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            "official-artwork": {
+              front_default:
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            },
           },
         },
       })

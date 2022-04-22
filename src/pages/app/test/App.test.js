@@ -1,6 +1,11 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "../../../tests/utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
+import { MAX_ATTEMPTS } from "../../../contexts/PokeWordle";
 
 describe("App", () => {
   test("Estado inicial da aplicação", async () => {
@@ -8,12 +13,12 @@ describe("App", () => {
 
     // renderiza a imagem do pokemon na tela
     const image = await screen.findByRole("img", {
-      name: /misterious pokemon image/i,
+      name: /misterious pokemon artwork/i,
     });
     expect(image).toBeInTheDocument();
 
     // renderiza os inputs para inserção
-    const inputs = await screen.findAllByRole("textbox");
+    const inputs = screen.getAllByRole("textbox");
     expect(inputs).toHaveLength(9);
     inputs.forEach((input) => {
       expect(input).toBeEnabled();
@@ -21,8 +26,8 @@ describe("App", () => {
     });
 
     // botão de nova tentativa deve estar desabilitado
-    const button = screen.getByRole("button", { name: /play again/i });
-    expect(button).toBeDisabled();
+    const button = screen.queryByRole("button", { name: /play again/i });
+    expect(button).not.toBeInTheDocument();
   });
 
   test("Ao acertar o pokemon dentro do máximo de tentativas", async () => {
@@ -37,8 +42,11 @@ describe("App", () => {
       userEvent.type(input, letter);
     });
 
+    const submit = screen.getByRole("button", { name: /submit/i });
+    userEvent.click(submit);
+
     // deve exibir mensagem de sucesso
-    const message = await screen.findByText(
+    const message = screen.getByText(
       "Congrats, you're a true Pokemon master. Play again!"
     );
     expect(message).toBeInTheDocument();
@@ -46,25 +54,38 @@ describe("App", () => {
     // deve habilitar o botão para jogar novamente
     const button = screen.getByRole("button", { name: /play again/i });
     expect(button).toBeEnabled();
+
+    // deve iniciar um novo jogo ao clicar no botão
+    userEvent.click(button);
+
+    const emptyInputs = await screen.findAllByRole("textbox");
+    emptyInputs.forEach((input) => {
+      expect(input).toHaveValue("");
+    });
+    expect(message).not.toBeInTheDocument();
+    expect(button).not.toBeInTheDocument();
   });
 
   test("Ao não acertar o pokemon dentro do máximo de tentativas", async () => {
     render(<App />);
-    // @ToDo: deve limitar as tentativas para 1 neste teste
 
     // insere os valores incorretos nos inputs
     const inputs = await screen.findAllByRole("textbox");
     expect(inputs).toHaveLength(9);
-    ["a", "b", "c", "d", "e", "f", "g", "h", "i"].forEach((letter, i) => {
-      const input = inputs[i];
-      userEvent.clear(input);
-      userEvent.type(input, letter);
-    });
+
+    const submit = screen.getByRole("button", { name: /submit/i });
+
+    for (let index = 0; index < MAX_ATTEMPTS; index++) {
+      ["a", "b", "c", "d", "e", "f", "g", "h", "i"].forEach((letter, i) => {
+        const input = inputs[i];
+        userEvent.clear(input);
+        userEvent.type(input, letter);
+      });
+      userEvent.click(submit);
+    }
 
     // deve exibir mensagem de erro
-    const message = await screen.findByText(
-      "Sorry, but you do not guess the Pokemon"
-    );
+    const message = screen.getByText("Sorry, but you do not guess the Pokemon");
     expect(message).toBeInTheDocument();
 
     // deve exibir o nome do pokemon não descoberto
@@ -74,23 +95,5 @@ describe("App", () => {
     // deve habilitar o botão para jogar novamente
     const button = screen.getByRole("button", { name: /play again/i });
     expect(button).toBeEnabled();
-  });
-
-  describe("Componente de letras", () => {
-    test("Estado inicial do componente", () => {});
-
-    test.todo("Ao acertar todas as letras");
-
-    test.todo("Ao errar todas as letras");
-
-    test.todo("Ao inserir todas as letras na ordem errada");
-
-    test.todo("Ao acertar, errar e trocar ordem das letras");
-  });
-
-  describe("Componente de imagem", () => {
-    test.todo("Estado inicial do componente");
-
-    test.todo("Ao final das tentativas");
   });
 });
