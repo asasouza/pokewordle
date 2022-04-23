@@ -36,16 +36,16 @@ export function PokeWordleProvider(props) {
   const [attempts, setAttempts] = useState([]);
   const [pokemon, setPokemon] = useState(null);
 
-  async function getPokemon() {
+  const getPokemon = useCallback(async () => {
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${getRandomNuber(1, 150)}`
     );
     setPokemon(response.data);
-  }
+  }, [])
 
   useEffect(() => {
     getPokemon();
-  }, []);
+  }, [getPokemon]);
 
   const getGameStatus = useCallback(() => {
     if (

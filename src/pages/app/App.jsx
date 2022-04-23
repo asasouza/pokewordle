@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GAME_STATUS, usePokeWordle } from "../../contexts/PokeWordle";
 import Attempts from "./components/Attempts";
 import Guesser from "./components/Guesser";
@@ -6,7 +6,7 @@ import ShadowImage from "./components/ShadowImage";
 
 const App = () => {
   const [, , { initNewGame, gameStatus }] = usePokeWordle();
-  
+
   return (
     <div className="bg-gray-100 flex flex-col items-center h-screen max-w-md mx-auto overflow-x-hidden p-4 relative">
       <ShadowImage />
