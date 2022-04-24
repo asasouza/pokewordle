@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GAME_STATUS, usePokeWordle } from "../../../contexts/PokeWordle";
 
 const Guesser = () => {
@@ -31,8 +31,6 @@ const Guesser = () => {
     return null;
   }
 
-  // console.log(`inputsRef`, inputsRef);
-
   return (
     <>
       <form onSubmit={handleSubmit} className="flex justify-center">
@@ -42,7 +40,7 @@ const Guesser = () => {
             key={i}
             maxLength={1}
             required
-            className="border w-10 h-10 mr-2 rounded text-center caret-transparent focus:bg-gray-300"
+            className="border-2 text-zinc-800 border-zinc-800 w-10 h-10 mr-2 rounded text-center caret-transparent bg-gray-50 focus:bg-gray-300 outline-none text-2xl"
             onChange={(e) => onChangeField(i, e.target.value)}
             value={attempt[i] || ""}
             autoFocus={i === 0}

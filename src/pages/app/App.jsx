@@ -1,36 +1,29 @@
-import React, { useEffect } from "react";
-import { GAME_STATUS, usePokeWordle } from "../../contexts/PokeWordle";
+import React from "react";
 import Attempts from "./components/Attempts";
+import GameStatusMessage from "./components/GameStatusMessage";
 import Guesser from "./components/Guesser";
 import ShadowImage from "./components/ShadowImage";
 
 const App = () => {
-  const [, , { initNewGame, gameStatus }] = usePokeWordle();
-
   return (
-    <div className="bg-gray-100 flex flex-col items-center h-screen max-w-md mx-auto overflow-x-hidden p-4 relative">
-      <ShadowImage />
+    <div className="bg-red-600  h-screen max-w-md mx-auto overflow-x-hidden">
+      <span className="h-16 w-full border-b-4 border-double border-black mb-5 flex items-end justify-between">
+        <span className="bg-blue-500 border-4 w-10 h-10 m-5 rounded-full self-center"></span>
 
-      <Attempts />
+        <span
+          className="bg-red-600 w-52 h-9 border-4 border-b-0 border-r-0 border-double border-black -mb-1 -mr-7"
+          style={{ transform: "skew(-35deg)" }}
+        ></span>
+      </span>
+      <div className="px-5 flex flex-col items-center">
+        <ShadowImage />
 
-      <Guesser />
+        <Attempts />
 
-      {gameStatus === GAME_STATUS.WIN && (
-        <p>Congrats, you're a true Pokemon master. Play again!</p>
-      )}
+        <Guesser />
 
-      {gameStatus === GAME_STATUS.LOOSE && (
-        <p>Sorry, but you do not guess the Pokemon</p>
-      )}
-
-      {gameStatus !== GAME_STATUS.IN_PROGRESS && (
-        <button
-          className="w-full font-bold text-stone-600 rounded-md p-1 border-2 border-stone-600 my-10"
-          onClick={initNewGame}
-        >
-          Play Again
-        </button>
-      )}
+        <GameStatusMessage />
+      </div>
     </div>
   );
 };

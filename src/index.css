@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "PokemonPixel";
+  src: local("PokemonPixel"),
+    url(../src/fonts/pokemon_pixel_font.woff) format("woff");
+}
+
+body {
+    font-family: "PokemonPixel";
+}
