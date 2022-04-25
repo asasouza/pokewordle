@@ -26,7 +26,7 @@ describe("Attempts", () => {
 
     // verifica que todos as leras tem a classe correta
     attemptLetters.forEach((letter) => {
-      expect(letter).toHaveClass("bg-green-400");
+      expect(letter).toHaveClass("bg-green-500");
     });
   });
 
@@ -40,7 +40,7 @@ describe("Attempts", () => {
 
     // verifica que todos as leras tem a classe correta
     attemptLetters.forEach((letter) => {
-      expect(letter).toHaveClass("bg-gray-400");
+      expect(letter).toHaveClass("bg-zinc-400");
     });
   });
 
@@ -54,7 +54,7 @@ describe("Attempts", () => {
 
     // verifica que todos as leras tem a classe correta
     attemptLetters.forEach((letter) => {
-      expect(letter).toHaveClass("bg-yellow-400");
+      expect(letter).toHaveClass("bg-yellow-500");
     });
   });
 
@@ -67,14 +67,14 @@ describe("Attempts", () => {
     expect(attemptLetters.length).toBe(9);
 
     // verifica que todos as leras tem a classe correta
-    expect(attemptLetters[0]).toHaveClass("bg-green-400");
-    expect(attemptLetters[1]).toHaveClass("bg-gray-400");
-    expect(attemptLetters[2]).toHaveClass("bg-green-400");
-    expect(attemptLetters[3]).toHaveClass("bg-yellow-400");
-    expect(attemptLetters[4]).toHaveClass("bg-yellow-400");
-    expect(attemptLetters[5]).toHaveClass("bg-green-400");
-    expect(attemptLetters[6]).toHaveClass("bg-yellow-400");
-    expect(attemptLetters[7]).toHaveClass("bg-gray-400");
-    expect(attemptLetters[8]).toHaveClass("bg-green-400");
+    expect(attemptLetters[0]).toHaveClass("bg-green-500");
+    expect(attemptLetters[1]).toHaveClass("bg-zinc-400");
+    expect(attemptLetters[2]).toHaveClass("bg-green-500");
+    expect(attemptLetters[3]).toHaveClass("bg-yellow-500");
+    expect(attemptLetters[4]).toHaveClass("bg-yellow-500");
+    expect(attemptLetters[5]).toHaveClass("bg-green-500");
+    expect(attemptLetters[6]).toHaveClass("bg-yellow-500");
+    expect(attemptLetters[7]).toHaveClass("bg-zinc-400");
+    expect(attemptLetters[8]).toHaveClass("bg-green-500");
   });
 });

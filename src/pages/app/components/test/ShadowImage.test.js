@@ -17,13 +17,10 @@ describe("Componente de imagem", () => {
           { attempts, MAX_ATTEMPTS: maxAttemptsNumber },
           {
             name: "BULBASAUR",
+            id: 1,
             sprites: {
-              other: {
-                "official-artwork": {
-                  front_default:
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                },
-              },
+              front_default:
+                "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
             },
           },
           { gameStatus },

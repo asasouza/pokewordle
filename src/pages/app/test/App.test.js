@@ -47,7 +47,7 @@ describe("App", () => {
 
     // deve exibir mensagem de sucesso
     const message = screen.getByText(
-      "Congrats, you're a true Pokemon master. Play again!"
+      "Congrats, you're a true Pokemon master."
     );
     expect(message).toBeInTheDocument();
 
@@ -62,7 +62,7 @@ describe("App", () => {
     emptyInputs.forEach((input) => {
       expect(input).toHaveValue("");
     });
-    expect(message).not.toBeInTheDocument();
+    expect(message).toHaveTextContent("");
     expect(button).not.toBeInTheDocument();
   });
 
@@ -85,11 +85,11 @@ describe("App", () => {
     }
 
     // deve exibir mensagem de erro
-    const message = screen.getByText("Sorry, but you do not guess the Pokemon");
+    const message = screen.getByText("Sorry, but you do not guess the Pokemon.");
     expect(message).toBeInTheDocument();
 
     // deve exibir o nome do pokemon não descoberto
-    const pokemonName = screen.getByText("The Pokemon was: Bulbasaur");
+    const pokemonName = screen.getByText("Bulbasaur");
     expect(pokemonName).toBeInTheDocument();
 
     // deve habilitar o botão para jogar novamente
