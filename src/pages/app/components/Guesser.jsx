@@ -21,9 +21,21 @@ const Guesser = () => {
     newAttempt[index] = value.replace(/\d/g, "").toUpperCase();
     setAttemp(newAttempt);
 
-    const isLastInput = index === pokemonName.length - 1;
-    if (!isLastInput) {
-      inputsRef[index + 1].focus();
+    if (value !== "") {
+      const isLastInput = index === pokemonName.length - 1;
+      if (!isLastInput) {
+        inputsRef[index + 1].focus();
+      }
+    }
+  }
+
+  function onDelete(index, event) {
+    const isEmptyLetter = !attempt[index] || attempt[index] === "";
+    if (event.code === "Backspace" && isEmptyLetter) {
+      const isFirstInput = index === 0;
+      if (!isFirstInput) {
+        inputsRef[index - 1].focus();
+      }
     }
   }
 
@@ -42,6 +54,7 @@ const Guesser = () => {
             required
             className="border-2 text-zinc-800 border-zinc-800 w-10 h-10 mr-2 rounded text-center caret-transparent bg-gray-50 focus:bg-gray-300 outline-none text-2xl"
             onChange={(e) => onChangeField(i, e.target.value)}
+            onKeyDown={(e) => onDelete(i, e)}
             value={attempt[i] || ""}
             autoFocus={i === 0}
             ref={(e) => (inputsRef[i] = e)}

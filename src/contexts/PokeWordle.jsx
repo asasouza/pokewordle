@@ -82,7 +82,7 @@ export function PokeWordleProvider(props) {
       pokemon,
       { gameStatus, initNewGame },
     ];
-  }, [setAttempts, pokemon, attempts, getGameStatus]);
+  }, [setAttempts, pokemon, attempts, getGameStatus, getPokemon]);
 
   return <PokeWordle.Provider value={value} {...props} />;
 }
