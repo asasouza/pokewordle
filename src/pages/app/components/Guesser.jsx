@@ -58,6 +58,8 @@ const Guesser = () => {
             value={attempt[i] || ""}
             autoFocus={i === 0}
             ref={(e) => (inputsRef[i] = e)}
+            /* TECH TALK -- EXEMPLO FIREEVENT X USEREVENT */
+            // disabled
           />
         ))}
         <input type="submit" value="submit" className="hidden" />

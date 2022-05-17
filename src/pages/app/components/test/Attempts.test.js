@@ -13,8 +13,6 @@ describe("Attempts", () => {
       </PokeWordleProvider>
     );
   }
-  
-  test("Estado inicial do componente", () => {});
 
   test("Ao acertar todas as letras", () => {
     // renderiza o componente

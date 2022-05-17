@@ -15,6 +15,7 @@ describe("PokeWordle Context", () => {
     consoleErrorMock.mockRestore();
   });
 
+  /* TECH TALK - EXEMPLO DE ASSERT DE EXCEÇÃO NA RENDERIZAÇÃO DE COMPONENTES */
   test("Deve causar erro ao tentar utilizar o hook sem o Provider", () => {
     const ExceptionComponent = () => {
       usePokeWordle();
