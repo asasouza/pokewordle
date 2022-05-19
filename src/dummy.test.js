@@ -32,11 +32,9 @@ describe("Dummy component test", () => {
     // do utente
     userEvent.click(button);
 
-    // debugging
+    /* TECH TALK -- DEBUGGING */
     logRoles(h2);
-
     console.log(prettyDOM());
-    
     console.log(prettyDOM(h2));
   });
 });
