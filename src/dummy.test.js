@@ -18,7 +18,7 @@ describe("Dummy component test", () => {
 
     // screen é uma global que contem os métodos para encontrar
     // elementos na virtual DOM
-    const h2 = screen.getByRole("heading");
+    const h2 = screen.getByRole("listitem");
 
     // asserts baseados no element DOM
     expect(h2).toBeInTheDocument();
@@ -33,8 +33,20 @@ describe("Dummy component test", () => {
     userEvent.click(button);
 
     /* TECH TALK -- DEBUGGING */
-    logRoles(h2);
+    logRoles(button);
     console.log(prettyDOM());
     console.log(prettyDOM(h2));
   });
+});
+
+test("Log virtual DOM", () => {
+  // Renderiza o componente na virtual DOM para execução do teste
+  render(<DummyComponent />);
+
+  // Imprime no console todo o DOM renderizado
+  console.log(prettyDOM());
+
+  const h2 = screen.getByRole("heading");
+  // Imprime no console o DOM de um elemento especifico
+  console.log(prettyDOM(h2));
 });

@@ -8,11 +8,11 @@ import App from "../App";
 import { MAX_ATTEMPTS } from "../../../contexts/PokeWordle";
 
 describe("App", () => {
-  test("Estado inicial da aplicação", async () => {
+  test.only("Estado inicial da aplicação", async () => {
     render(<App />);
 
     // renderiza a imagem do pokemon na tela
-    const image = await screen.findByRole("img", {
+    const image = screen.getByRole("img", {
       name: /misterious pokemon artwork/i,
     });
     expect(image).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("App", () => {
       // O PROBLEMA COM ISSO É QUE NÃO É FEITA UMA INTERAÇÃO COMO UM UTENTE
       // FARIA NA APLICAÇÃO, E ISTO PODE GERAR FALSOS POSITIVOS NOS TESTES.
 
-      fireEvent.change(input, { target: { value: letter } });
+      // fireEvent.change(input, { target: { value: letter } });
 
       // UTILIZANDO O USEREVENT A BIBLIOTECA BUSCA SIMULAR A FORMA DE INTERAÇÃO
       // COMO O OCORRERIA COM O UTENTE (CAMPO DISABLED, FOCUSED, ACTIVE, ETC)
