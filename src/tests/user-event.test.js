@@ -9,7 +9,6 @@ const MyComponentForm = () => {
     e.preventDefault();
     setInputData("");
   }
-
   return (
     <div>
       <form onSubmit={onSubmit}>
