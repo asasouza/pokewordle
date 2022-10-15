@@ -8,11 +8,13 @@ import App from "../App";
 import { MAX_ATTEMPTS } from "../../../contexts/PokeWordle";
 
 describe("App", () => {
-  test.only("Estado inicial da aplicação", async () => {
+  test("Estado inicial da aplicação", async () => {
     render(<App />);
 
     // renderiza a imagem do pokemon na tela
-    const image = screen.getByRole("img", {
+    /* TECH TALK - DIFERENCA ENTRE getByRole e findByRole */
+    // const image = screen.getByRole("img", {
+    const image = await screen.findByRole("img", {
       name: /misterious pokemon artwork/i,
     });
     expect(image).toBeInTheDocument();

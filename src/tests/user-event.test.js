@@ -16,7 +16,9 @@ const MyComponentForm = () => {
           onChange={(e) => setInputData(e.target.value)}
           value={inputData}
           name="my-text"
-          disabled
+          /* TECH TALK - EXEMPLO DE COMO O CAMPO DESABILITADOR 
+          PODE CAUSAR DIFERENCAS ENTRE TESTES */
+          // disabled
         />
         <input type="submit" value="Submit" className="hidden" />
       </form>
@@ -40,13 +42,13 @@ test("Testing with fireEvent", () => {
   expect(pText).toBeInTheDocument();
 });
 
-test("Testing with userEvent", () => {
+test("Testing with userEvent", async () => {
   // renderiza o componente na virtual DOM de teste
   render(<MyComponentForm />);
 
   // Encontra o elemento de input
   const input = screen.getByRole("textbox");
-
+  
   // Utiliza o userEvent para simular a digitação no elemento
   userEvent.type(input, "this is a test");
 
@@ -100,5 +102,3 @@ test("Testing like a user", () => {
   expect(input).toHaveValue("");
   expect(pText).toHaveTextContent("");
 });
-
-

@@ -18,7 +18,7 @@ describe("Dummy component test", () => {
 
     // screen é uma global que contem os métodos para encontrar
     // elementos na virtual DOM
-    const h2 = screen.getByRole("listitem");
+    const h2 = screen.getByRole("heading");
 
     // asserts baseados no element DOM
     expect(h2).toBeInTheDocument();
